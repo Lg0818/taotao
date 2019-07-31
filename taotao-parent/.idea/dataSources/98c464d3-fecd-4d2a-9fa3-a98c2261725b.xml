@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="taotao@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="taotao">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="grts"/>
+    <schema id="4" parent="1" name="grts014"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="ligang"/>
+    <schema id="7" parent="1" name="mybatis"/>
+    <schema id="8" parent="1" name="mysql"/>
+    <schema id="9" parent="1" name="performance_schema"/>
+    <schema id="10" parent="1" name="sakila"/>
+    <schema id="11" parent="1" name="sys"/>
+    <schema id="12" parent="1" name="taotaoshop"/>
+    <schema id="13" parent="1" name="world"/>
+    <table id="14" parent="2" name="tbcontent"/>
+    <table id="15" parent="2" name="tbcontentcategory">
+      <Comment>内容分类</Comment>
+    </table>
+    <table id="16" parent="2" name="tbitem">
+      <Comment>商品表</Comment>
+    </table>
+    <table id="17" parent="2" name="tbitemcat">
+      <Comment>商品类目</Comment>
+    </table>
+    <table id="18" parent="2" name="tbitemdesc">
+      <Comment>商品描述表</Comment>
+    </table>
+    <table id="19" parent="2" name="tbitemparam">
+      <Comment>商品规则参数</Comment>
+    </table>
+    <table id="20" parent="2" name="tbitemparamitem">
+      <Comment>商品规格和商品的关系表</Comment>
+    </table>
+    <table id="21" parent="2" name="tborder"/>
+    <table id="22" parent="2" name="tborderitem"/>
+    <table id="23" parent="2" name="tbordershipping"/>
+    <table id="24" parent="2" name="tbuser">
+      <Comment>用户表</Comment>
+    </table>
+    <column id="25" parent="14" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="14" name="categoryId">
+      <Position>2</Position>
+      <Comment>内容类目ID</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="14" name="title">
+      <Position>3</Position>
+      <Comment>内容标题</Comment>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="28" parent="14" name="subTitle">
+      <Position>4</Position>
+      <Comment>子标题</Comment>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="29" parent="14" name="titleDesc">
+      <Position>5</Position>
+      <Comment>标题描述</Comment>
+      <DataType>varchar(500)|0</DataType>
+    </column>
+    <column id="30" parent="14" name="url">
+      <Position>6</Position>
+      <Comment>链接</Comment>
+      <DataType>varchar(500)|0</DataType>
+    </column>
+    <column id="31" parent="14" name="pic">
+      <Position>7</Position>
+      <Comment>图片绝对路径</Comment>
+      <DataType>varchar(300)|0</DataType>
+    </column>
+    <column id="32" parent="14" name="pic2">
+      <Position>8</Position>
+      <Comment>图片2</Comment>
+      <DataType>varchar(300)|0</DataType>
+    </column>
+    <column id="33" parent="14" name="content">
+      <Position>9</Position>
+      <Comment>内容</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="34" parent="14" name="created">
+      <Position>10</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="35" parent="14" name="updated">
+      <Position>11</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <index id="36" parent="14" name="category_id">
+      <ColNames>categoryId</ColNames>
+    </index>
+    <index id="37" parent="14" name="updated">
+      <ColNames>updated</ColNames>
+    </index>
+    <key id="38" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="39" parent="15" name="id">
+      <Position>1</Position>
+      <Comment>类目ID</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="40" parent="15" name="parentId">
+      <Position>2</Position>
+      <Comment>父类目ID=0时，代表的是一级的类目</Comment>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="41" parent="15" name="name">
+      <Position>3</Position>
+      <Comment>分类名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="42" parent="15" name="status">
+      <Position>4</Position>
+      <Comment>状态。可选值:1(正常),2(删除)</Comment>
+      <DataType>int(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="43" parent="15" name="sortOrder">
+      <Position>5</Position>
+      <Comment>排列序号，表示同级类目的展现次序，如数值相等则按名称次序排列。取值范围:大于零的整数</Comment>
+      <DataType>int(4)|0</DataType>
+    </column>
+    <column id="44" parent="15" name="isParent">
+      <Position>6</Position>
+      <Comment>该类目是否为父类目，1为true，0为false</Comment>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="45" parent="15" name="created">
+      <Position>7</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="46" parent="15" name="updated">
+      <Position>8</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <index id="47" parent="15" name="parent_id">
+      <ColNames>parentId
+status</ColNames>
+    </index>
+    <index id="48" parent="15" name="sort_order">
+      <ColNames>sortOrder</ColNames>
+    </index>
+    <key id="49" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="50" parent="16" name="id">
+      <Position>1</Position>
+      <Comment>商品id，同时也是商品编号</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="16" name="title">
+      <Position>2</Position>
+      <Comment>商品标题</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="16" name="sellPoint">
+      <Position>3</Position>
+      <Comment>商品卖点</Comment>
+      <DataType>varchar(500)|0</DataType>
+    </column>
+    <column id="53" parent="16" name="price">
+      <Position>4</Position>
+      <Comment>商品价格，单位为：分</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="54" parent="16" name="num">
+      <Position>5</Position>
+      <Comment>库存数量</Comment>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="16" name="barcode">
+      <Position>6</Position>
+      <Comment>商品条形码</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="56" parent="16" name="image">
+      <Position>7</Position>
+      <Comment>商品图片</Comment>
+      <DataType>varchar(500)|0</DataType>
+    </column>
+    <column id="57" parent="16" name="cid">
+      <Position>8</Position>
+      <Comment>所属类目，叶子类目</Comment>
+      <DataType>bigint(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="16" name="status">
+      <Position>9</Position>
+      <Comment>商品状态，1-正常，2-下架，3-删除</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="59" parent="16" name="created">
+      <Position>10</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="16" name="updated">
+      <Position>11</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="61" parent="16" name="cid">
+      <ColNames>cid</ColNames>
+    </index>
+    <index id="62" parent="16" name="status">
+      <ColNames>status</ColNames>
+    </index>
+    <index id="63" parent="16" name="updated">
+      <ColNames>updated</ColNames>
+    </index>
+    <key id="64" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="65" parent="17" name="id">
+      <Position>1</Position>
+      <Comment>类目ID</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="66" parent="17" name="parentId">
+      <Position>2</Position>
+      <Comment>父类目ID=0时，代表的是一级的类目</Comment>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="67" parent="17" name="name">
+      <Position>3</Position>
+      <Comment>类目名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="68" parent="17" name="status">
+      <Position>4</Position>
+      <Comment>状态。可选值:1(正常),2(删除)</Comment>
+      <DataType>int(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="69" parent="17" name="sortOrder">
+      <Position>5</Position>
+      <Comment>排列序号，表示同级类目的展现次序，如数值相等则按名称次序排列。取值范围:大于零的整数</Comment>
+      <DataType>int(4)|0</DataType>
+    </column>
+    <column id="70" parent="17" name="isParent">
+      <Position>6</Position>
+      <Comment>该类目是否为父类目，1为true，0为false</Comment>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="71" parent="17" name="created">
+      <Position>7</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="72" parent="17" name="updated">
+      <Position>8</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <index id="73" parent="17" name="parent_id">
+      <ColNames>parentId
+status</ColNames>
+    </index>
+    <index id="74" parent="17" name="sort_order">
+      <ColNames>sortOrder</ColNames>
+    </index>
+    <key id="75" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="76" parent="18" name="itemId">
+      <Position>1</Position>
+      <Comment>商品ID</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="77" parent="18" name="itemDesc">
+      <Position>2</Position>
+      <Comment>商品描述</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="78" parent="18" name="created">
+      <Position>3</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="79" parent="18" name="updated">
+      <Position>4</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <key id="80" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>itemId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="81" parent="19" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="82" parent="19" name="itemCatId">
+      <Position>2</Position>
+      <Comment>商品类目ID</Comment>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="83" parent="19" name="paramData">
+      <Position>3</Position>
+      <Comment>参数数据，格式为json格式</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="84" parent="19" name="created">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="85" parent="19" name="updated">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <index id="86" parent="19" name="item_cat_id">
+      <ColNames>itemCatId</ColNames>
+    </index>
+    <key id="87" parent="19" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="88" parent="20" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="89" parent="20" name="itemId">
+      <Position>2</Position>
+      <Comment>商品ID</Comment>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="90" parent="20" name="paramData">
+      <Position>3</Position>
+      <Comment>参数数据，格式为json格式</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="91" parent="20" name="created">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="92" parent="20" name="updated">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <index id="93" parent="20" name="item_id">
+      <ColNames>itemId</ColNames>
+    </index>
+    <key id="94" parent="20" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="95" parent="21" name="orderId">
+      <Position>1</Position>
+      <Comment>订单id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="96" parent="21" name="payment">
+      <Position>2</Position>
+      <Comment>实付金额。精确到2位小数;单位:元。如:200.07，表示:200元7分</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="97" parent="21" name="paymentType">
+      <Position>3</Position>
+      <Comment>支付类型，1、在线支付，2、货到付款</Comment>
+      <DataType>int(2)|0</DataType>
+    </column>
+    <column id="98" parent="21" name="postFee">
+      <Position>4</Position>
+      <Comment>邮费。精确到2位小数;单位:元。如:200.07，表示:200元7分</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="99" parent="21" name="status">
+      <Position>5</Position>
+      <Comment>状态：1、未付款，2、已付款，3、未发货，4、已发货，5、交易成功，6、交易关闭</Comment>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <column id="100" parent="21" name="createTime">
+      <Position>6</Position>
+      <Comment>订单创建时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="101" parent="21" name="updateTime">
+      <Position>7</Position>
+      <Comment>订单更新时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="102" parent="21" name="paymentTime">
+      <Position>8</Position>
+      <Comment>付款时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="103" parent="21" name="consignTime">
+      <Position>9</Position>
+      <Comment>发货时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="104" parent="21" name="endTime">
+      <Position>10</Position>
+      <Comment>交易完成时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="105" parent="21" name="closeTime">
+      <Position>11</Position>
+      <Comment>交易关闭时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="106" parent="21" name="shippingName">
+      <Position>12</Position>
+      <Comment>物流名称</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="107" parent="21" name="shippingCode">
+      <Position>13</Position>
+      <Comment>物流单号</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="108" parent="21" name="userId">
+      <Position>14</Position>
+      <Comment>用户id</Comment>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="109" parent="21" name="buyerMessage">
+      <Position>15</Position>
+      <Comment>买家留言</Comment>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="110" parent="21" name="buyerNick">
+      <Position>16</Position>
+      <Comment>买家昵称</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="111" parent="21" name="buyerRate">
+      <Position>17</Position>
+      <Comment>买家是否已经评价</Comment>
+      <DataType>int(2)|0</DataType>
+    </column>
+    <index id="112" parent="21" name="buyer_nick">
+      <ColNames>buyerNick</ColNames>
+    </index>
+    <index id="113" parent="21" name="create_time">
+      <ColNames>createTime</ColNames>
+    </index>
+    <index id="114" parent="21" name="payment_type">
+      <ColNames>paymentType</ColNames>
+    </index>
+    <index id="115" parent="21" name="status">
+      <ColNames>status</ColNames>
+    </index>
+    <key id="116" parent="21" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>orderId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="117" parent="22" name="id">
+      <Position>1</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="118" parent="22" name="itemId">
+      <Position>2</Position>
+      <Comment>商品id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="119" parent="22" name="orderId">
+      <Position>3</Position>
+      <Comment>订单id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="120" parent="22" name="num">
+      <Position>4</Position>
+      <Comment>商品购买数量</Comment>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <column id="121" parent="22" name="title">
+      <Position>5</Position>
+      <Comment>商品标题</Comment>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="122" parent="22" name="price">
+      <Position>6</Position>
+      <Comment>商品单价</Comment>
+      <DataType>bigint(50)|0</DataType>
+    </column>
+    <column id="123" parent="22" name="totalFee">
+      <Position>7</Position>
+      <Comment>商品总金额</Comment>
+      <DataType>bigint(50)|0</DataType>
+    </column>
+    <column id="124" parent="22" name="picPath">
+      <Position>8</Position>
+      <Comment>商品图片地址</Comment>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <index id="125" parent="22" name="item_id">
+      <ColNames>itemId</ColNames>
+    </index>
+    <index id="126" parent="22" name="order_id">
+      <ColNames>orderId</ColNames>
+    </index>
+    <key id="127" parent="22" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="128" parent="23" name="orderId">
+      <Position>1</Position>
+      <Comment>订单ID</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="129" parent="23" name="receiverName">
+      <Position>2</Position>
+      <Comment>收货人全名</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="130" parent="23" name="receiverPhone">
+      <Position>3</Position>
+      <Comment>固定电话</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="131" parent="23" name="receiverMobile">
+      <Position>4</Position>
+      <Comment>移动电话</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="132" parent="23" name="receiverState">
+      <Position>5</Position>
+      <Comment>省份</Comment>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <column id="133" parent="23" name="receiverCity">
+      <Position>6</Position>
+      <Comment>城市</Comment>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <column id="134" parent="23" name="receiverDistrict">
+      <Position>7</Position>
+      <Comment>区/县</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="135" parent="23" name="receiverAddress">
+      <Position>8</Position>
+      <Comment>收货地址，如：xx路xx号</Comment>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="136" parent="23" name="receiverZip">
+      <Position>9</Position>
+      <Comment>邮政编码,如：310001</Comment>
+      <DataType>varchar(6)|0</DataType>
+    </column>
+    <column id="137" parent="23" name="created">
+      <Position>10</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="138" parent="23" name="updated">
+      <Position>11</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <key id="139" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>orderId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="140" parent="24" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="141" parent="24" name="userName">
+      <Position>2</Position>
+      <Comment>用户名</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="142" parent="24" name="passWord">
+      <Position>3</Position>
+      <Comment>密码，加密存储</Comment>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="143" parent="24" name="phone">
+      <Position>4</Position>
+      <Comment>注册手机号</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="144" parent="24" name="email">
+      <Position>5</Position>
+      <Comment>注册邮箱</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="145" parent="24" name="created">
+      <Position>6</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="146" parent="24" name="updated">
+      <Position>7</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="147" parent="24" name="email">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="148" parent="24" name="phone">
+      <ColNames>phone</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="149" parent="24" name="username">
+      <ColNames>userName</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="150" parent="24" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="151" parent="24" name="username">
+      <ColNames>userName</ColNames>
+      <UnderlyingIndexName>username</UnderlyingIndexName>
+    </key>
+    <key id="152" parent="24" name="phone">
+      <ColNames>phone</ColNames>
+      <UnderlyingIndexName>phone</UnderlyingIndexName>
+    </key>
+    <key id="153" parent="24" name="email">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>email</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>

@@ -1,0 +1,11 @@
+com\taotao\pojo\TbItem.class
+com\taotao\pojo\TbOrder.class
+com\taotao\pojo\TbContentCategory.class
+com\taotao\pojo\TbUser.class
+com\taotao\pojo\TbItemCat.class
+com\taotao\pojo\TbOrderShipping.class
+com\taotao\pojo\TbItemParam.class
+com\taotao\pojo\TbContent.class
+com\taotao\pojo\TbOrderItem.class
+com\taotao\pojo\TbItemDesc.class
+com\taotao\pojo\TbItemParamItem.class
