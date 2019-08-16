@@ -1,0 +1,4 @@
+com\taotao\search\service\impl\MyTest.class
+com\taotao\search\dao\SearchDao.class
+com\taotao\search\listener\MyMessageListener.class
+com\taotao\search\service\impl\SearchItemServiceImpl.class

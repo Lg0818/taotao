@@ -4,6 +4,7 @@ com\taotao\mapper\TbContentMapper.class
 com\taotao\mapper\TbItemParamItemMapper.class
 com\taotao\mapper\TbOrderShippingMapper.class
 com\taotao\mapper\TbOrderMapper.class
+com\taotao\mapper\SearchItemMapper.class
 com\taotao\mapper\TbItemMapper.class
 com\taotao\mapper\TbItemCatMapper.class
 com\taotao\mapper\TbItemParamMapper.class

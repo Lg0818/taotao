@@ -10,7 +10,8 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
 
-<context:component-scan base-package="com.taotao.controller" />
+    <context:component-scan base-package="com.taotao.controller" />
+
     <mvc:annotation-driven />
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -18,10 +19,36 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!--引入js、css-->
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+
+    <!--文件上传-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设定默认编码 -->
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <!-- 设定文件上传的最大值5MB，5*1024*1024 -->
+        <property name="maxUploadSize" value="5242880"></property>
+    </bean>
+
+
     <!-- 引用dubbo服务 -->
     <dubbo:application name="taotao-manager-web"/>
-    <dubbo:registry protocol="zookeeper" address="192.168.79.100:2181"/>
-    <dubbo:reference interface="com.taotao.service.ItemService" id="itemService" />
+    <!--<dubbo:registry  protocol="zookeeper" address="192.168.79.100:2181"/>-->
+    <!--阿里云47.102.122.134:2181-->
+    <dubbo:registry  protocol="zookeeper" address="47.102.122.134:2181"/>
+   <!-- <dubbo:registry protocol="zookeeper" address="101.201.239.34:2181"/>-->
+    <dubbo:reference  timeout="50000" interface="com.taotao.service.ItemService" id="itemService" />
 
+    <dubbo:reference  timeout="50000" interface="com.taotao.service.ItemCatService" id="itemCatService"/>
+
+    <dubbo:reference  timeout="50000" interface="com.taotao.service.PictureService" id="pictureService" />
+    <!--cms内容管理-->
+    <dubbo:reference  timeout="50000" interface="com.taotao.service.ContentCategoryService" id="contentCategoryService" />
+
+    <dubbo:reference  timeout="50000" interface="com.taotao.service.ContentService" id="contentService" />
+    <dubbo:reference  timeout="50000" interface="com.taotao.search.service.SearchItemService" id="searchItemService"/>
+    <dubbo:reference  timeout="50000" interface="com.taotao.service.ItemParamService" id="itemParamService"/>
 
 </beans>
